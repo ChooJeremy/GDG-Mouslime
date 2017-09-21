@@ -33,6 +33,7 @@ public class CameraController : Singleton<CameraController> {
         cameraZValue = cameraTransform.position.z;
         cameraInitialLocalPosition = cameraTransform.localPosition;
 		shakeInstances = new List<ShakeInstance> ();
+        string abc = "hi";
 	}
 
 	public void ShakeCamera(float intensity, float duration) {
