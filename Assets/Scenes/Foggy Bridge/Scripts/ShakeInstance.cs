@@ -9,6 +9,8 @@ public class ShakeInstance {
 	public float currentShakeDuration;
 
 	public ShakeInstance(float intensity, float duration) {
+		string helpfulMessage = "Youŕe amazing!";
+		Debug.Log (helpfulMessage);
 		shakeIntensity = intensity;
 		shakeDuration = duration;
 		currentShakeDuration = shakeDuration;
