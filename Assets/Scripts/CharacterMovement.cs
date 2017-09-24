@@ -28,7 +28,7 @@ public class CharacterMovement : UnitInput {
 	}
 
 	protected void Update() {
-		if(Input.GetKeyUp(KeyCode.UpArrow)) {
+		if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) {
 			upButtonReleased = true;
 		}
 	}
@@ -37,6 +37,10 @@ public class CharacterMovement : UnitInput {
 
 		// Execute this every frame
 		DoPlayerInput();
+	}
+
+	protected bool jumpKeyPressed() {
+		return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
 	}
 
 	protected void DoPlayerInput() {
@@ -53,7 +57,7 @@ public class CharacterMovement : UnitInput {
 
 			// fall
 			// Gravity is multiplied by 5 to make the jump less floaty
-			if(currentVelocity.y <= 0 && Input.GetKey(KeyCode.UpArrow) && !upButtonReleased) {
+			if(currentVelocity.y <= 0 && jumpKeyPressed() && !upButtonReleased) {
 				isGliding = true;
 				currentVelocity.y = Time.deltaTime * glideRate * -1;
 			} else {
@@ -70,7 +74,7 @@ public class CharacterMovement : UnitInput {
 		}
 
 		// Pressed left arrow?
-		if (Input.GetKey(KeyCode.LeftArrow)) {
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
 
 			// Accelerate leftwards towards max speed
 			currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, -movementSpeed, currentAcceleration * Time.deltaTime);
@@ -79,7 +83,7 @@ public class CharacterMovement : UnitInput {
 		}
 
 		// Pressed right arrow?
-		if (Input.GetKey(KeyCode.RightArrow)) {
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 
 			// Accelerate rightwards towards max speed
 			currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, movementSpeed, currentAcceleration * Time.deltaTime);
@@ -88,7 +92,7 @@ public class CharacterMovement : UnitInput {
 		}
 
 		// Pressed up arrow?
-		if (Input.GetKey(KeyCode.UpArrow) && upButtonReleased) {
+		if (jumpKeyPressed() && upButtonReleased) {
 			if(!isGliding) {
 				upButtonReleased = false;
 			}

@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class UseProjectileSkill : MonoBehaviour {
 
-    // Prefabs
-    [SerializeField]
-    private GameObject projectile;
+	// Prefabs
+	[SerializeField]
+	private GameObject projectile;
 
-    // Objects
-    [SerializeField]
-    private Transform firingIndicator;
-    [SerializeField]
-    private Transform firingPivot;
+	// Objects
+	[SerializeField]
+	private Transform firingIndicator;
+	[SerializeField]
+	private Transform firingPivot;
 
-    // Fields
-    [SerializeField]
-    private float projectileDamage;
-    [SerializeField]
-    private float projectileSpeed;
-    [SerializeField]
-    private float projectileLifeSpan;
-    [SerializeField]
+	// Fields
+	[SerializeField]
+	private float projectileDamage;
+	[SerializeField]
+	private float projectileSpeed;
+	[SerializeField]
+	private float projectileLifeSpan;
+	[SerializeField]
 	private float projectileCooldown;
 
 	private MovementSpeedBuff projectileBuff;
@@ -32,43 +32,43 @@ public class UseProjectileSkill : MonoBehaviour {
 		//projectileBuff = new MovementSpeedBuff (.75f, "EXAMPLE_SLOW", 3, null, false);
 	}
 
-    // Runtime variables
-    private float currentProjectileCooldown = 0;
+	// Runtime variables
+	private float currentProjectileCooldown = 0;
 
 	// Executes every frame
-    private void Update () {
+	private void Update () {
 
 		// Skill is on cooldown?
-        if (currentProjectileCooldown > 0) {
+		if (currentProjectileCooldown > 0) {
 
 			// Decrease cooldown time according to frame time
-            currentProjectileCooldown -= Time.deltaTime;
-        }
+			currentProjectileCooldown -= Time.deltaTime;
+		}
 
 		// Pressed C button and skill is off cooldown?
-		if (Input.GetKey(KeyCode.C) && currentProjectileCooldown <= 0) {
+		if (Input.GetMouseButtonDown(0) && currentProjectileCooldown <= 0) {
 			
-            FireProjectile();
+			FireProjectile();
 
 			// Set cooldown for the skill
-            currentProjectileCooldown = projectileCooldown;
-        }
+			currentProjectileCooldown = projectileCooldown;
+		}
 	}
 
-    private void FireProjectile() {
+	private void FireProjectile() {
 
 		// Create a projectile
-        GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
+		GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
 
 		// Calculate character's shooting direction
-        Vector2 facingVector = firingIndicator.position - firingPivot.position;
+		Vector2 facingVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - firingPivot.position;
 
 		// Setup projectile attribute (like damage, speed, etc)
-        //Debug.Assert(newProjectile.GetComponent<ExampleLinearProjectile>(), "Projectile does not contain the LinearProjectile component. Check if you getting the correct component.");
+		//Debug.Assert(newProjectile.GetComponent<ExampleLinearProjectile>(), "Projectile does not contain the LinearProjectile component. Check if you getting the correct component.");
 		newProjectile.GetComponent<Boomerang>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, gameObject, null);
 
 		// Use this if using projectileBuff
 		//newProjectile.GetComponent<ExampleLinearProjectile>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, projectileBuff);
-    }
+	}
 
 }
