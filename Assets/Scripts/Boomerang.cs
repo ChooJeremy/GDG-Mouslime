@@ -7,6 +7,8 @@ public class Boomerang : Projectile
 {
 	public float degreeRotationPerSecond;
 	public float timeBeforeReturn;
+	public float boomerangMaxReturnSpeed;
+	public float boomerangReturnAcceleration;
 
 	private GameObject thrower;
 
@@ -23,13 +25,16 @@ public class Boomerang : Projectile
 			timeBeforeReturn -= Time.deltaTime;
 		}
 		if(timeBeforeReturn <= 0) {
-			Vector3 oldVelocity = projectileRigidbody.velocity;
-			unitProjectileDirection = (thrower.transform.position - transform.position).normalized;
-			oldVelocity.x += unitProjectileDirection.x * Time.deltaTime * projectileSpeed;
-			oldVelocity.y += unitProjectileDirection.y * Time.deltaTime * projectileSpeed;
-			projectileRigidbody.velocity = oldVelocity;
-			//Debug.Log(oldVelocity);
-			//projectileRigidbody.AddForce(unitProjectileDirection * Time.deltaTime * projectileSpeed);
+			if(projectileRigidbody.velocity.magnitude <= boomerangMaxReturnSpeed) {
+				Vector3 oldVelocity = projectileRigidbody.velocity;
+				unitProjectileDirection = (thrower.transform.position - transform.position).normalized;
+				oldVelocity.x += unitProjectileDirection.x * Time.deltaTime * boomerangReturnAcceleration;
+				oldVelocity.y += unitProjectileDirection.y * Time.deltaTime * boomerangReturnAcceleration;
+				projectileRigidbody.velocity = oldVelocity;
+			} else {
+				//Set it to move directly towards the player
+				projectileRigidbody.velocity = (thrower.transform.position -transform.position).normalized * boomerangMaxReturnSpeed;
+			}
 		}
 	}
 

@@ -134,3 +134,5 @@ MonoBehaviour:
   facingDirectionOffset: 0
   degreeRotationPerSecond: 270
   timeBeforeReturn: 3
+  boomerangMaxReturnSpeed: 12
+  boomerangReturnAcceleration: 6
