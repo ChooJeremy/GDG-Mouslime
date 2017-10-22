@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.2150875
+  m_Length: 1.2150859
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 417157613}
   m_AttachedIK: {fileID: 713130366}
@@ -931,6 +931,48 @@ PolygonCollider2D:
       - {x: 0.45, y: -0.45499998}
       - {x: 0.61, y: -0.385}
       - {x: 0.83, y: -0.195}
+--- !u!1001 &179347911
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &247966937
 GameObject:
   m_ObjectHideFlags: 0
@@ -6599,7 +6641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.125622
+  m_Length: 1.125621
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 87378878}
   m_AttachedIK: {fileID: 713130366}
@@ -6886,7 +6928,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1577695336204380, guid: 43cda0b047b0c9748bcfa8d42e755673, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43cda0b047b0c9748bcfa8d42e755673, type: 2}

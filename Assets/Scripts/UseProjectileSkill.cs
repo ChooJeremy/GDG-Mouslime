@@ -61,7 +61,10 @@ public class UseProjectileSkill : MonoBehaviour {
 		GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
 
 		// Calculate character's shooting direction
-		Vector2 facingVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - firingPivot.position;
+		Vector3 screenMousePos = Input.mousePosition;
+		screenMousePos.z = Camera.main.transform.position.z;
+		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(screenMousePos);
+		Vector2 facingVector = -1*(mouseWorldPos - firingPivot.position);
 
 		// Setup projectile attribute (like damage, speed, etc)
 		//Debug.Assert(newProjectile.GetComponent<ExampleLinearProjectile>(), "Projectile does not contain the LinearProjectile component. Check if you getting the correct component.");
