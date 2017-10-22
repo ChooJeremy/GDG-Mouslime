@@ -136,3 +136,7 @@ MonoBehaviour:
   timeBeforeReturn: 3
   boomerangMaxReturnSpeed: 12
   boomerangReturnAcceleration: 6
+  forceReturnDistance: 10
+  forceReturnMultiplier: 0.5
+  unmissable: 0
+  freeTime: 1

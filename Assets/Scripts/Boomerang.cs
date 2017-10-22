@@ -9,6 +9,10 @@ public class Boomerang : Projectile
 	public float timeBeforeReturn;
 	public float boomerangMaxReturnSpeed;
 	public float boomerangReturnAcceleration;
+	public float forceReturnDistance;
+	public float forceReturnMultiplier;
+	public bool unmissable;
+	public float freeTime;
 
 	private GameObject thrower;
 
@@ -21,38 +25,50 @@ public class Boomerang : Projectile
 	void Update () 
 	{
 		transform.Rotate(new Vector3(0, 0, 1), degreeRotationPerSecond * Time.deltaTime);
-		if(timeBeforeReturn > 0) {
-			timeBeforeReturn -= Time.deltaTime;
+		if(Vector3.Distance(thrower.transform.position, transform.position) > forceReturnDistance) {
+			projectileRigidbody.velocity = (thrower.transform.position -transform.position).normalized * boomerangMaxReturnSpeed * forceReturnMultiplier;
 		}
-		if(timeBeforeReturn <= 0) {
-			if(projectileRigidbody.velocity.magnitude <= boomerangMaxReturnSpeed) {
-				Vector3 oldVelocity = projectileRigidbody.velocity;
-				unitProjectileDirection = (thrower.transform.position - transform.position).normalized;
-				oldVelocity.x += unitProjectileDirection.x * Time.deltaTime * boomerangReturnAcceleration;
-				oldVelocity.y += unitProjectileDirection.y * Time.deltaTime * boomerangReturnAcceleration;
-				projectileRigidbody.velocity = oldVelocity;
-			} else {
-				//Set it to move directly towards the player
-				projectileRigidbody.velocity = (thrower.transform.position -transform.position).normalized * boomerangMaxReturnSpeed;
+		else {
+			if(timeBeforeReturn > 0) {
+				timeBeforeReturn -= Time.deltaTime;
+			}
+			if(timeBeforeReturn <= 0) {
+				if(projectileRigidbody.velocity.magnitude <= boomerangMaxReturnSpeed) {
+					Vector3 oldVelocity = projectileRigidbody.velocity;
+					unitProjectileDirection = (thrower.transform.position - transform.position).normalized;
+					oldVelocity.x += unitProjectileDirection.x * Time.deltaTime * boomerangReturnAcceleration;
+					oldVelocity.y += unitProjectileDirection.y * Time.deltaTime * boomerangReturnAcceleration;
+					projectileRigidbody.velocity = oldVelocity;
+					if(unmissable) {
+						if(freeTime > 0) {
+							freeTime -= Time.deltaTime;
+						} else {
+							projectileRigidbody.velocity = (thrower.transform.position -transform.position).normalized * boomerangMaxReturnSpeed;
+						}
+					}
+				} else {
+					//Set it to move directly towards the player
+					projectileRigidbody.velocity = (thrower.transform.position -transform.position).normalized * boomerangMaxReturnSpeed;
+				}
 			}
 		}
 	}
 
 	// Sets up projectile properties
-    public void SetupProjectile(float damage, float speed, float lifespan, Vector2 direction, GameObject throwPerson, params Buff[] buffs) {
-        projectileDamage = damage;
-        projectileSpeed = speed;
-        projectileLifespan = lifespan;
-        projectileBuffs = buffs;
-        unitProjectileDirection = direction.normalized;
-        projectileRigidbody.velocity = unitProjectileDirection * projectileSpeed;
-        thrower = throwPerson;
-    }
+	public void SetupProjectile(float damage, float speed, float lifespan, Vector2 direction, GameObject throwPerson, params Buff[] buffs) {
+		projectileDamage = damage;
+		projectileSpeed = speed;
+		projectileLifespan = lifespan;
+		projectileBuffs = buffs;
+		unitProjectileDirection = direction.normalized;
+		projectileRigidbody.velocity = unitProjectileDirection * projectileSpeed;
+		thrower = throwPerson;
+	}
 		
 	protected override void UpdateProjectile() {
 		// Sets the projectile velocity to move in assigned direction at assigned speed
-        //projectileRigidbody.velocity = unitProjectileDirection * projectileSpeed;
-    }
+		//projectileRigidbody.velocity = unitProjectileDirection * projectileSpeed;
+	}
 
 	protected override void OnHitEnemy(GameObject hitObject) {
 		// Gets the component (of the target hit) that controls the health,
@@ -76,6 +92,7 @@ public class Boomerang : Projectile
 	}
 
 	protected override void OnProjectileDeath () {
+		thrower.GetComponent<UseProjectileSkill>().maximumTotalAllowedOnScreen++;
 		// Delete (destroy) the gameobject
 		Destroy (this.gameObject);
 	}

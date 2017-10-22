@@ -25,6 +25,7 @@ public class UseProjectileSkill : MonoBehaviour {
 	private float projectileCooldown;
 
 	private MovementSpeedBuff projectileBuff;
+	public int maximumTotalAllowedOnScreen;
 
 	private void Awake() {
 
@@ -57,6 +58,12 @@ public class UseProjectileSkill : MonoBehaviour {
 
 	private void FireProjectile() {
 
+		if(maximumTotalAllowedOnScreen > 0) {
+			maximumTotalAllowedOnScreen--;
+		} else {
+			return;
+		}
+
 		// Create a projectile
 		GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
 
@@ -64,7 +71,7 @@ public class UseProjectileSkill : MonoBehaviour {
 		Vector3 screenMousePos = Input.mousePosition;
 		screenMousePos.z = Camera.main.transform.position.z;
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(screenMousePos);
-		Vector2 facingVector = -1*(mouseWorldPos - firingPivot.position);
+		Vector2 facingVector = (mouseWorldPos - firingPivot.position);
 
 		// Setup projectile attribute (like damage, speed, etc)
 		//Debug.Assert(newProjectile.GetComponent<ExampleLinearProjectile>(), "Projectile does not contain the LinearProjectile component. Check if you getting the correct component.");
