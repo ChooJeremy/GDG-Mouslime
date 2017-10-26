@@ -13,6 +13,8 @@ public class Boomerang : Projectile
 	public float forceReturnMultiplier;
 	public bool unmissable;
 	public float freeTime;
+	public float damageIncrease;
+	public float maxDamage;
 
 	private GameObject thrower;
 
@@ -24,6 +26,9 @@ public class Boomerang : Projectile
 	// Update is called once per frame
 	void Update () 
 	{
+		if(projectileDamage < maxDamage) {
+			projectileDamage += damageIncrease * Time.deltaTime;
+		}
 		transform.Rotate(new Vector3(0, 0, 1), degreeRotationPerSecond * Time.deltaTime);
 		if(Vector3.Distance(thrower.transform.position, transform.position) > forceReturnDistance) {
 			projectileRigidbody.velocity = (thrower.transform.position -transform.position).normalized * boomerangMaxReturnSpeed * forceReturnMultiplier;

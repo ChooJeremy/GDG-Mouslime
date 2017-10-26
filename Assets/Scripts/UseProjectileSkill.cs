@@ -54,6 +54,17 @@ public class UseProjectileSkill : MonoBehaviour {
 			// Set cooldown for the skill
 			currentProjectileCooldown = projectileCooldown;
 		}
+
+		// Pressed C button and skill is off cooldown?
+        else if (Input.GetKey(KeyCode.C) && currentProjectileCooldown <= 0) {
+
+			// Fire projectile at target
+            FireForward();
+
+			// Set cooldown for the skill
+            currentProjectileCooldown = projectileCooldown;
+        }
+
 	}
 
 	private void FireProjectile() {
@@ -79,6 +90,18 @@ public class UseProjectileSkill : MonoBehaviour {
 
 		// Use this if using projectileBuff
 		//newProjectile.GetComponent<ExampleLinearProjectile>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, projectileBuff);
+	}
+
+	private void FireForward() {
+		// Create a projectile
+        GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
+
+		// Calculate character's shooting direction
+        Vector2 facingVector = firingIndicator.position - firingPivot.position;
+
+		// Setup projectile attribute (like damage, speed, etc)
+        //Debug.Assert(newProjectile.GetComponent<ExampleHomingProjectile>(), "Projectile does not contain the HomingProjectile component. Check if you getting the correct component.");
+		newProjectile.GetComponent<Boomerang>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, gameObject, null);
 	}
 
 }

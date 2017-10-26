@@ -140,3 +140,5 @@ MonoBehaviour:
   forceReturnMultiplier: 0.5
   unmissable: 0
   freeTime: 1
+  damageIncrease: 1
+  maxDamage: 20
