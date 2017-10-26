@@ -93,6 +93,13 @@ public class UseProjectileSkill : MonoBehaviour {
 	}
 
 	private void FireForward() {
+
+		if(maximumTotalAllowedOnScreen > 0) {
+			maximumTotalAllowedOnScreen--;
+		} else {
+			return;
+		}
+
 		// Create a projectile
         GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
 
