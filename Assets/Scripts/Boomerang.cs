@@ -15,6 +15,9 @@ public class Boomerang : Projectile
 	public float freeTime;
 	public float damageIncrease;
 	public float maxDamage;
+	public ParticleSystem particleSystem;
+
+	private float originalDamage;
 
 	private GameObject thrower;
 
@@ -28,6 +31,11 @@ public class Boomerang : Projectile
 	{
 		if(projectileDamage < maxDamage) {
 			projectileDamage += damageIncrease * Time.deltaTime;
+			if(projectileDamage > maxDamage) {
+				projectileDamage = maxDamage;
+			}
+			var emission = particleSystem.emission;
+			emission.rateOverDistanceMultiplier = (projectileDamage - originalDamage)/(maxDamage - projectileDamage);
 		}
 		transform.Rotate(new Vector3(0, 0, 1), degreeRotationPerSecond * Time.deltaTime);
 		if(Vector3.Distance(thrower.transform.position, transform.position) > forceReturnDistance) {
@@ -62,6 +70,7 @@ public class Boomerang : Projectile
 	// Sets up projectile properties
 	public void SetupProjectile(float damage, float speed, float lifespan, Vector2 direction, GameObject throwPerson, params Buff[] buffs) {
 		projectileDamage = damage;
+		originalDamage = damage;
 		projectileSpeed = speed;
 		projectileLifespan = lifespan;
 		projectileBuffs = buffs;
@@ -98,6 +107,10 @@ public class Boomerang : Projectile
 
 	protected override void OnProjectileDeath () {
 		thrower.GetComponent<UseProjectileSkill>().maximumTotalAllowedOnScreen++;
+		//Detech particle system
+		particleSystem.GetComponent<ParticleSystem>().Stop();
+		particleSystem.gameObject.transform.parent = null;
+		Destroy(particleSystem.gameObject, particleSystem.main.duration);
 		// Delete (destroy) the gameobject
 		Destroy (this.gameObject);
 	}
