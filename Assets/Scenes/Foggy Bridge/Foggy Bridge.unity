@@ -975,6 +975,49 @@ Prefab:
       propertyPath: maximumTotalAllowedOnScreen
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 212800111520505716, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.7668236
+      objectReference: {fileID: 0}
+    - target: {fileID: 212800111520505716, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.09861591
+      objectReference: {fileID: 0}
+    - target: {fileID: 212800111520505716, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.83823526
+      objectReference: {fileID: 0}
+    - target: {fileID: 212800111520505716, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e67daa76f89f8ff42a9180e5fd545bee,
+        type: 3}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502388066462142, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 60894807610179280, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 60894807610179280, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
   m_IsPrefabParent: 0
