@@ -96,7 +96,9 @@ public class Boomerang : Projectile
 
 	protected override void OnHitFriendly(GameObject o) {
 		if(timeBeforeReturn <= 0) {
-			OnProjectileDeath();
+			if(o.GetComponent<UseProjectileSkill>() != null) {
+				OnProjectileDeath();
+			}
 		}
 	}
 
