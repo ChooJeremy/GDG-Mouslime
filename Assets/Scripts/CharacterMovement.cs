@@ -19,6 +19,8 @@ public class CharacterMovement : UnitInput {
 	private bool upButtonReleased;
 
 	public bool isBlocking;
+	public float blockingRecoveryTime;
+	protected float blockingRecovery;
 
 	// Used for animations
 	protected bool isFacingRight = true;
@@ -32,6 +34,7 @@ public class CharacterMovement : UnitInput {
 		isGliding = false;
 		upButtonReleased = true;
 		isBlocking = false;
+		blockingRecovery = blockingRecoveryTime;
 	}
 
 	protected void Update() {
@@ -87,12 +90,15 @@ public class CharacterMovement : UnitInput {
 		if  (Input.GetKey(KeyCode.X) && currentVelocity.y == 0) {
 			//crouch, reduce damage
 			isBlocking = true;
+			blockingRecovery = blockingRecoveryTime;
 			gameObject.GetComponent<ScorpionAttribute>().damageMultiplier = this.damageMultiplier;
 		} else {
-			isBlocking = false;
-			gameObject.GetComponent<ScorpionAttribute>().damageMultiplier = 1;
+			blockingRecovery -= Time.deltaTime;
+			if(blockingRecovery <= 0) {
+				isBlocking = false;
+				gameObject.GetComponent<ScorpionAttribute>().damageMultiplier = 1;
+			}
 		}
-
 
 		// Pressed left arrow?
 		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {

@@ -187,6 +187,8 @@ MonoBehaviour:
   glideRate: 10
   damageMultiplier: 0.15
   glideEffects: {fileID: 198812368059481756}
+  isBlocking: 0
+  blockingRecoveryTime: 1
 --- !u!114 &114800433319785492
 MonoBehaviour:
   m_ObjectHideFlags: 1
