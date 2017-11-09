@@ -88,6 +88,7 @@ public class UnitAttributes : MonoBehaviour {
     }
 
     public virtual void ApplyAttack(float damageDealt, Vector2 pointOfHit, Color damageColor, params Buff[] attackBuffs) {
+        Debug.Log(gameObject);
 		TakeDamage(damageDealt, pointOfHit, damageColor, false);
 
         if (attackBuffs != null) {

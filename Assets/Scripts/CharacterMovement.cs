@@ -9,11 +9,14 @@ public class CharacterMovement : UnitInput {
 
 	public int totalJumpsAllowed;
 	public float glideRate;
+	public float damageMultiplier;
 
 	// Jump variables
 	private int totalJumps;
 	private bool isGliding;
 	private bool upButtonReleased;
+
+	private bool isBlocking;
 
 	// Used for animations
 	protected bool isFacingRight = true;
@@ -25,6 +28,7 @@ public class CharacterMovement : UnitInput {
 		totalJumps = totalJumpsAllowed;
 		isGliding = false;
 		upButtonReleased = true;
+		isBlocking = false;
 	}
 
 	protected void Update() {
@@ -73,26 +77,43 @@ public class CharacterMovement : UnitInput {
 			isGliding = false;
 		}
 
+		if  (Input.GetKey(KeyCode.X) && currentVelocity.y == 0) {
+			//crouch, reduce damage
+			isBlocking = true;
+			gameObject.GetComponent<ScorpionAttribute>().damageMultiplier = this.damageMultiplier;
+		} else {
+			isBlocking = false;
+			gameObject.GetComponent<ScorpionAttribute>().damageMultiplier = 1;
+		}
+
+
 		// Pressed left arrow?
 		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
 
-			// Accelerate leftwards towards max speed
-			currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, -movementSpeed, currentAcceleration * Time.deltaTime);
-			hasMovedHorizontally = true;
-			isFacingRight = false;
+			if(!isBlocking) {
+				// Accelerate leftwards towards max speed
+				currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, -movementSpeed, currentAcceleration * Time.deltaTime);
+				hasMovedHorizontally = true;
+				isFacingRight = false;
+				characterAnimator.SetBool("isMoving", true);
+			}
 		}
 
 		// Pressed right arrow?
 		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 
-			// Accelerate rightwards towards max speed
-			currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, movementSpeed, currentAcceleration * Time.deltaTime);
-			hasMovedHorizontally = true;
-			isFacingRight = true;
+			if(!isBlocking) {
+				// Accelerate rightwards towards max speed
+				currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, movementSpeed, currentAcceleration * Time.deltaTime);
+				hasMovedHorizontally = true;
+				isFacingRight = true;
+				characterAnimator.SetBool("isMoving", true);
+			}
 		}
 
 		// Pressed up arrow?
 		if (jumpKeyPressed() && upButtonReleased) {
+			isBlocking = false;
 			if(!isGliding) {
 				upButtonReleased = false;
 			}
@@ -117,6 +138,9 @@ public class CharacterMovement : UnitInput {
 
 			// Decelerate towards 0 speed
 			currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, 0, currentAcceleration * Time.deltaTime); // Slow down
+			if(currentVelocity.x < 0.0001) {
+				characterAnimator.SetBool("isMoving", false);
+			}
 		}
 			
 		// All velocity calculated, time to move the player

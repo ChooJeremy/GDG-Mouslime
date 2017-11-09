@@ -815,6 +815,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageTextPrefab: {fileID: 1621478000799694, guid: 790bd72460b201745873dce77f36ced3,
     type: 2}
+--- !u!1 &116115844 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1253559539606924, guid: 07fac2057c4f48f439210f5347e19b8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 179347911}
+--- !u!114 &116115856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 116115844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4f8ecf11b4f6d4e9c2e01a6059d305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaxHealth: 100
+  baseMovementSpeed: 5
+  timeTakenToReachMaxSpeed: 0.0625
+  baseJumpHeight: 1.25
+  baseDamageTakenFactor: 1
+  baseDamageOutputFactor: 1
+  damageMultiplier: 1
 --- !u!1 &167712402
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +992,16 @@ Prefab:
     - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642726179826028, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: damageMultiplier
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114265790566289156, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}

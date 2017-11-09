@@ -70,7 +70,7 @@ public class Boomerang : Projectile
 	// Sets up projectile properties
 	public void SetupProjectile(float damage, float speed, float lifespan, Vector2 direction, GameObject throwPerson, params Buff[] buffs) {
 		projectileDamage = damage;
-		originalDamage = damage;
+		originalDamage = damage;;
 		projectileSpeed = speed;
 		projectileLifespan = lifespan;
 		projectileBuffs = buffs;
