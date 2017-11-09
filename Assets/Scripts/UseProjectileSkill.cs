@@ -10,8 +10,6 @@ public class UseProjectileSkill : MonoBehaviour {
 
 	// Objects
 	[SerializeField]
-	private Transform firingIndicator;
-	[SerializeField]
 	private Transform firingPivot;
 
 	// Fields
@@ -25,12 +23,14 @@ public class UseProjectileSkill : MonoBehaviour {
 	private float projectileCooldown;
 
 	private MovementSpeedBuff projectileBuff;
+	public SpriteRenderer shooterSprite;
 	public int maximumTotalAllowedOnScreen;
 
 	private void Awake() {
 
 		// Uncomment this (and put projectileBuff as an argument in SetupProjectile()) to apply a slow buff to the example character's projectiles
 		//projectileBuff = new MovementSpeedBuff (.75f, "EXAMPLE_SLOW", 3, null, false);
+		shooterSprite = gameObject.GetComponent<SpriteRenderer>();
 	}
 
 	// Runtime variables
@@ -76,7 +76,7 @@ public class UseProjectileSkill : MonoBehaviour {
 		}
 
 		// Create a projectile
-		GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
+		GameObject newProjectile = (GameObject) Instantiate(projectile, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
 
 		// Calculate character's shooting direction
 		Vector3 screenMousePos = Input.mousePosition;
@@ -101,10 +101,13 @@ public class UseProjectileSkill : MonoBehaviour {
 		}
 
 		// Create a projectile
-        GameObject newProjectile = (GameObject) Instantiate(projectile, firingIndicator.position, Quaternion.Euler(Vector3.zero));
+        GameObject newProjectile = (GameObject) Instantiate(projectile, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
 
 		// Calculate character's shooting direction
-        Vector2 facingVector = firingIndicator.position - firingPivot.position;
+		Vector2 facingVector = new Vector2(1, 0);
+		if(shooterSprite.flipX) {
+			facingVector = new Vector2(-1, 0);
+		}
 
 		// Setup projectile attribute (like damage, speed, etc)
         //Debug.Assert(newProjectile.GetComponent<ExampleHomingProjectile>(), "Projectile does not contain the HomingProjectile component. Check if you getting the correct component.");
