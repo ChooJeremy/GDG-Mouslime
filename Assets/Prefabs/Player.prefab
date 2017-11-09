@@ -138,12 +138,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1517655195451052, guid: c33077896b44e4845962d86119fd05a9, type: 2}
   firingPivot: {fileID: 4461671474087234}
-  projectileDamage: 10
-  projectileSpeed: 3
-  projectileLifeSpan: 999
-  projectileCooldown: 1
-  shooterSprite: {fileID: 0}
-  maximumTotalAllowedOnScreen: 3
+  projectileDamage: 15
+  projectileSpeed: 6.5
+  projectileLifeSpan: 30
+  projectileCooldown: 0.5
+  maximumTotalAllowedOnScreen: 30
 --- !u!114 &114302940344712658
 MonoBehaviour:
   m_ObjectHideFlags: 1

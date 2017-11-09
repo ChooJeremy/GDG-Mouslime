@@ -22,8 +22,9 @@ public class UseProjectileSkill : MonoBehaviour {
 	[SerializeField]
 	private float projectileCooldown;
 
+	protected SpriteRenderer shooterSprite;
+
 	private MovementSpeedBuff projectileBuff;
-	public SpriteRenderer shooterSprite;
 	public int maximumTotalAllowedOnScreen;
 
 	private void Awake() {
