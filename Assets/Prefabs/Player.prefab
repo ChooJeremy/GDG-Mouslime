@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 198812368059481756}
   - component: {fileID: 199475909598599718}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Glide Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,6 +247,7 @@ MonoBehaviour:
   totalJumpsAllowed: 2
   glideRate: 10
   damageMultiplier: 0.15
+  glideEffects: {fileID: 198812368059481756}
 --- !u!114 &114800433319785492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,7 +312,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

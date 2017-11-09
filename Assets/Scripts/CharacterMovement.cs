@@ -6,6 +6,7 @@ public class CharacterMovement : UnitInput {
 
 	// Components
 	protected Animator characterAnimator;
+	protected SpriteRenderer spriteRenderer;
 
 	public int totalJumpsAllowed;
 	public float glideRate;
@@ -26,6 +27,7 @@ public class CharacterMovement : UnitInput {
 	protected override void Awake() {
 		base.Awake ();
 		characterAnimator = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		totalJumps = totalJumpsAllowed;
 		isGliding = false;
 		upButtonReleased = true;
@@ -146,6 +148,9 @@ public class CharacterMovement : UnitInput {
 				characterAnimator.SetBool("isMoving", false);
 			}
 		}
+
+		spriteRenderer.flipX = !isFacingRight;
+
 			
 		// All velocity calculated, time to move the player
 		// Pressed down button?
