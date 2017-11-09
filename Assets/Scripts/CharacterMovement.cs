@@ -10,6 +10,7 @@ public class CharacterMovement : UnitInput {
 	public int totalJumpsAllowed;
 	public float glideRate;
 	public float damageMultiplier;
+	public ParticleSystem glideEffects;	
 
 	// Jump variables
 	private int totalJumps;
@@ -62,10 +63,14 @@ public class CharacterMovement : UnitInput {
 			// fall
 			// Gravity is multiplied by 5 to make the jump less floaty
 			if(currentVelocity.y <= 0 && jumpKeyPressed() && !upButtonReleased) {
-				isGliding = true;
+				if(!isGliding) {
+					isGliding = true;
+					glideEffects.Play();
+				}
 				currentVelocity.y = Time.deltaTime * glideRate * -1;
 			} else {
 				currentVelocity.y += Time.deltaTime * -9.81f * 5;
+				glideEffects.Stop();
 			}
 		
 		// otherwise,
@@ -117,7 +122,6 @@ public class CharacterMovement : UnitInput {
 			if(!isGliding) {
 				upButtonReleased = false;
 			}
-
 
 			// If character is on ground,
 			if (characterMovement.collisions.below) {
