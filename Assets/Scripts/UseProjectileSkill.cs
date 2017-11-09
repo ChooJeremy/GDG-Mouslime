@@ -23,6 +23,7 @@ public class UseProjectileSkill : MonoBehaviour {
 	private float projectileCooldown;
 
 	protected SpriteRenderer shooterSprite;
+	protected CharacterMovement characterInformation;
 
 	private MovementSpeedBuff projectileBuff;
 	public int maximumTotalAllowedOnScreen;
@@ -32,6 +33,7 @@ public class UseProjectileSkill : MonoBehaviour {
 		// Uncomment this (and put projectileBuff as an argument in SetupProjectile()) to apply a slow buff to the example character's projectiles
 		//projectileBuff = new MovementSpeedBuff (.75f, "EXAMPLE_SLOW", 3, null, false);
 		shooterSprite = gameObject.GetComponent<SpriteRenderer>();
+		characterInformation = gameObject.GetComponent<CharacterMovement>();
 	}
 
 	// Runtime variables
@@ -68,11 +70,23 @@ public class UseProjectileSkill : MonoBehaviour {
 
 	}
 
-	private void FireProjectile() {
+	private bool fireCheck() {
+		if(characterInformation.isBlocking) {
+			Debug.Log("Blocking, can't fire");
+			return false;
+		}
 
 		if(maximumTotalAllowedOnScreen > 0) {
 			maximumTotalAllowedOnScreen--;
+			return true;
 		} else {
+			return false;
+		}
+	}
+
+	private void FireProjectile() {
+
+		if(!fireCheck()) {
 			return;
 		}
 
@@ -94,10 +108,7 @@ public class UseProjectileSkill : MonoBehaviour {
 	}
 
 	private void FireForward() {
-
-		if(maximumTotalAllowedOnScreen > 0) {
-			maximumTotalAllowedOnScreen--;
-		} else {
+		if(!fireCheck()) {
 			return;
 		}
 

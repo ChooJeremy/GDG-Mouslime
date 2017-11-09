@@ -18,7 +18,7 @@ public class CharacterMovement : UnitInput {
 	private bool isGliding;
 	private bool upButtonReleased;
 
-	private bool isBlocking;
+	public bool isBlocking;
 
 	// Used for animations
 	protected bool isFacingRight = true;

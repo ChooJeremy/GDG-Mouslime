@@ -29,13 +29,12 @@ public class Boomerang : Projectile
 		}
 		else {
 			timeSinceReturnStarted += Time.deltaTime;
-			Debug.Log(timeSinceReturnStarted / boomerangAccelerationTime);
 			Vector3 oldVelocity = projectileRigidbody.velocity;
 			unitProjectileDirection = (thrower.transform.position - transform.position).normalized;
-			//Debug.Log((timeSinceReturnStarted / boomerangAccelerationTime));
+			
 			oldVelocity.x = unitProjectileDirection.x * (boomerangMaxReturnSpeed * (timeSinceReturnStarted / boomerangAccelerationTime));
 			oldVelocity.y = unitProjectileDirection.y * (boomerangMaxReturnSpeed * (timeSinceReturnStarted / boomerangAccelerationTime));
-			//Debug.Log(oldVelocity);
+			
 			projectileRigidbody.velocity = oldVelocity;	
 		}
 	}
