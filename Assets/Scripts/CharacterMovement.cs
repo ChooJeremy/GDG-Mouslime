@@ -190,7 +190,7 @@ public class CharacterMovement : UnitInput {
 		// Click to fire projectile at mouse
 		if (Input.GetMouseButtonDown(0)) {
 			
-			boomerangSkill.FireProjectile();
+			boomerangSkill.FireProjectile(false, upgradedSkill == 2);
 			lastUsedSkill = 2;
 		}
 
@@ -198,7 +198,7 @@ public class CharacterMovement : UnitInput {
         else if (Input.GetKey(KeyCode.C)) {
 
 			// Fire projectile at target
-            boomerangSkill.FireForward();
+            boomerangSkill.FireProjectile(true, upgradedSkill == 2);
             lastUsedSkill = 2;
         }
 
@@ -226,6 +226,8 @@ public class CharacterMovement : UnitInput {
 		if(upgradedSkill == 0) {
 			normalGravityMultiplier = gravityMultiplierWithFlight;
 			totalJumpsAllowed = 1;
+		} else if(upgradedSkill == 2) {
+			boomerangSkill.projectileCooldown = 2;
 		}
 	}
 

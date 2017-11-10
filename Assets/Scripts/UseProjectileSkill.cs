@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UseProjectileSkill : MonoBehaviour {
-
 	// Prefabs
 	[SerializeField]
 	private GameObject projectile;
@@ -20,13 +19,23 @@ public class UseProjectileSkill : MonoBehaviour {
 	[SerializeField]
 	private float projectileLifeSpan;
 	[SerializeField]
-	private float projectileCooldown;
+	public float projectileCooldown;
+	public float timeBeforeBoomerangReturn;
 
 	protected SpriteRenderer shooterSprite;
 	protected CharacterMovement characterInformation;
 
 	private MovementSpeedBuff projectileBuff;
 	public int maximumTotalAllowedOnScreen;
+
+	public float upgradeSecondProjectileSpeed;
+	public float upgradeSecondProjectileDelay;
+	public float upgradeSecondProjetileReturnTime;
+
+	public float upgradeThirdProjectileSpeed;
+	public float upgradeThirdProjectileDelay;
+	public float upgradeThirdProjetileReturnTime;
+
 
 	private void Awake() {
 
@@ -59,46 +68,44 @@ public class UseProjectileSkill : MonoBehaviour {
 		}
 	}
 
-	public void FireProjectile() {
-
+	public void FireProjectile(bool forward, bool isUpgraded) {
 		if(!fireCheck()) {
 			return;
 		}
 
+		Vector2 facingVector = new Vector2(0, 0);
+
+		if(!forward) {
+			// Calculate character's shooting direction
+			Vector3 screenMousePos = Input.mousePosition;
+			screenMousePos.z = Camera.main.transform.position.z;
+			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(screenMousePos);
+			facingVector = (mouseWorldPos - firingPivot.position);
+		} else {
+			facingVector = new Vector2(1, 0);
+			if(shooterSprite.flipX) {
+				facingVector = new Vector2(-1, 0);
+			}
+		}
+
+		StartCoroutine (FireBoomerang(facingVector, projectileSpeed, 0, timeBeforeBoomerangReturn));
+
+		if(isUpgraded) {
+			StartCoroutine (FireBoomerang(facingVector, upgradeSecondProjectileSpeed, upgradeSecondProjectileDelay, upgradeSecondProjetileReturnTime));
+			StartCoroutine (FireBoomerang(facingVector, upgradeThirdProjectileSpeed, upgradeThirdProjectileDelay, upgradeThirdProjetileReturnTime));
+		}
+	}
+
+	private IEnumerator FireBoomerang(Vector2 direction, float speed, float waitTime, float returnTime) {
+
+		yield return new WaitForSeconds(waitTime);
 		// Create a projectile
 		GameObject newProjectile = (GameObject) Instantiate(projectile, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
 
-		// Calculate character's shooting direction
-		Vector3 screenMousePos = Input.mousePosition;
-		screenMousePos.z = Camera.main.transform.position.z;
-		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(screenMousePos);
-		Vector2 facingVector = (mouseWorldPos - firingPivot.position);
-
 		// Setup projectile attribute (like damage, speed, etc)
 		//Debug.Assert(newProjectile.GetComponent<ExampleLinearProjectile>(), "Projectile does not contain the LinearProjectile component. Check if you getting the correct component.");
-		newProjectile.GetComponent<Boomerang>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, gameObject, null);
+		newProjectile.GetComponent<Boomerang>().SetupProjectile(projectileDamage, speed, projectileLifeSpan, direction, gameObject, returnTime, null);
 
-		// Use this if using projectileBuff
-		//newProjectile.GetComponent<ExampleLinearProjectile>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, projectileBuff);
+		yield return null;
 	}
-
-	public void FireForward() {
-		if(!fireCheck()) {
-			return;
-		}
-
-		// Create a projectile
-        GameObject newProjectile = (GameObject) Instantiate(projectile, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
-
-		// Calculate character's shooting direction
-		Vector2 facingVector = new Vector2(1, 0);
-		if(shooterSprite.flipX) {
-			facingVector = new Vector2(-1, 0);
-		}
-
-		// Setup projectile attribute (like damage, speed, etc)
-        //Debug.Assert(newProjectile.GetComponent<ExampleHomingProjectile>(), "Projectile does not contain the HomingProjectile component. Check if you getting the correct component.");
-		newProjectile.GetComponent<Boomerang>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, gameObject, null);
-	}
-
 }

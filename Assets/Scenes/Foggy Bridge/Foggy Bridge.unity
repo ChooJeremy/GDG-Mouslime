@@ -4568,6 +4568,60 @@ Prefab:
       propertyPath: glideRate
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 198812368059481756, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1233570695
+      objectReference: {fileID: 0}
+    - target: {fileID: 198812368059481756, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1.1859777
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164884442113230, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: upgradeSecondProjectileSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: timeBeforeBoomerangReturn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: upgradeSecondProjetileReturnTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: upgradeThirdProjectileSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: upgradeThirdProjetileReturnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: upgradeThirdProjectileDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: upgradeSecondProjectileDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243264415899030, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: projectileCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
   m_IsPrefabParent: 0

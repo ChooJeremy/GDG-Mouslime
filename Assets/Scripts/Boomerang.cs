@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Boomerang : Projectile 
 {
 	public float degreeRotationPerSecond;
-	public float timeBeforeReturn;
+	protected float timeBeforeReturn;
 	public float boomerangMaxReturnSpeed;
 	public float boomerangAccelerationTime;
 	public ParticleSystem particleSystem;
@@ -40,11 +40,12 @@ public class Boomerang : Projectile
 	}
 
 	// Sets up projectile properties
-	public void SetupProjectile(float damage, float speed, float lifespan, Vector2 direction, GameObject throwPerson, params Buff[] buffs) {
+	public void SetupProjectile(float damage, float speed, float lifespan, Vector2 direction, GameObject throwPerson, float returnTime, params Buff[] buffs) {
 		projectileDamage = damage;
 		projectileSpeed = speed;
 		projectileLifespan = lifespan;
 		projectileBuffs = buffs;
+		timeBeforeReturn = returnTime;
 		unitProjectileDirection = direction.normalized;
 		projectileRigidbody.velocity = unitProjectileDirection * projectileSpeed;
 		thrower = throwPerson;
