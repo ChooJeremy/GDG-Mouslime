@@ -9,6 +9,13 @@ public class ScorpionAttribute : UnitAttributes {
 	public float timeBetweenBufferRefresh;
 	public GameObject shieldObject;
 	public float shieldFlashTime;
+
+	//improvement!
+	public GameObject improvementOrb;
+	public GameObject mainEnemy;
+	protected UnitAttributes enemyAttributes;
+	protected float enemyMaxHealth;
+
 	protected MeshRenderer shieldRenderer;
 	protected float currentHealthBuffer;
 	protected float currentBufferTimer;
@@ -23,10 +30,19 @@ public class ScorpionAttribute : UnitAttributes {
 		isUpgraded = false;
 		shieldRenderer = shieldObject.GetComponent<MeshRenderer>();
 		shieldRenderer.enabled = false;
+		if(mainEnemy == null) {
+			
+		}
+		enemyAttributes = mainEnemy.GetComponent<UnitAttributes>();
+		enemyMaxHealth = enemyAttributes.CurrentHealth;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(enemyAttributes.CurrentHealth * 2 < enemyMaxHealth) {
+			improvementOrb.GetComponent<UpgradeOrbBehavior>().isActive = true;
+			enemyMaxHealth = 0;
+		}
 		if(isUpgraded) {
 			currentBufferTimer += Time.deltaTime;
 			if(currentBufferTimer >= timeBetweenBufferRefresh) {

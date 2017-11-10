@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpgradeOrbBehavior : MonoBehaviour {
 
 	public float RotateSpeed;
+	public bool isActive;
  
 	public GameObject player;
 	public float timeToReturn; 
@@ -21,16 +22,21 @@ public class UpgradeOrbBehavior : MonoBehaviour {
  
 	void Update()
 	{
-		timePassed += Time.deltaTime;
+		if(isActive) {
+			GetComponent<SpriteRenderer>().enabled = true;
+			timePassed += Time.deltaTime;
 
-		_angle += RotateSpeed * Time.deltaTime;
- 
-		var rotateOffset = new Vector2(Mathf.Sin(_angle), Mathf.Cos(_angle)) * radius * ((timeToReturn - timePassed)/timeToReturn);
-		transform.position = (Vector2)player.transform.position + rotateOffset + offset;
+			_angle += RotateSpeed * Time.deltaTime;
+	 
+			var rotateOffset = new Vector2(Mathf.Sin(_angle), Mathf.Cos(_angle)) * radius * ((timeToReturn - timePassed)/timeToReturn);
+			transform.position = (Vector2)player.transform.position + rotateOffset + offset;
 
-		if(timePassed >= timeToReturn) {
-			player.GetComponent<CharacterMovement>().upgradeSkill();
-			Destroy(gameObject);
+			if(timePassed >= timeToReturn) {
+				player.GetComponent<CharacterMovement>().upgradeSkill();
+				Destroy(gameObject);
+			}
+		} else {
+			GetComponent<SpriteRenderer>().enabled = false;
 		}
 	}
 }
