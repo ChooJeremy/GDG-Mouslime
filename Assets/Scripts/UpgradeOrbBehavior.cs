@@ -8,6 +8,7 @@ public class UpgradeOrbBehavior : MonoBehaviour {
 	public bool isActive;
  
 	public GameObject player;
+	public ParticleSystem upgradeEffect;
 	public float timeToReturn; 
 	public Vector2 offset;
 	public float radius;
@@ -33,6 +34,7 @@ public class UpgradeOrbBehavior : MonoBehaviour {
 
 			if(timePassed >= timeToReturn) {
 				player.GetComponent<CharacterMovement>().upgradeSkill();
+				upgradeEffect.Play();
 				Destroy(gameObject);
 			}
 		} else {
