@@ -36,6 +36,10 @@ public class CharacterMovement : UnitInput {
 	protected float currentFlightTime = 0;
 	protected bool isFlying = false;
 
+	public GameObject flightUpgradeAnimation;
+	public GameObject blockUpgradeAnimation;
+	public GameObject boomerangUpgradeAnimation;
+
 	public float upgradeBlockingMovementMultiplier = 0.1f;
 
 	// Used for animations
@@ -82,15 +86,12 @@ public class CharacterMovement : UnitInput {
 
 		// Character not on ground?
 		if (!characterMovement.collisions.below) {
-
-			if(upgradedSkill == 0 && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))) {
-				if(currentFlightTime <= totalFlightTime) {
-					currentFlightTime += Time.deltaTime;
-					currentVelocity.y = flightModeMultiplier * 5;
-					if(!isFlying) {
-						isFlying = true;
-						glideEffects.Play();
-					}
+			if(upgradedSkill == 0 && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && currentFlightTime <= totalFlightTime) {
+				currentFlightTime += Time.deltaTime;
+				currentVelocity.y = flightModeMultiplier * 5;
+				if(!isFlying) {
+					isFlying = true;
+					glideEffects.Play();
 				}
 			} else {
 
@@ -243,10 +244,13 @@ public class CharacterMovement : UnitInput {
 		if(upgradedSkill == 0) {
 			normalGravityMultiplier = gravityMultiplierWithFlight;
 			totalJumpsAllowed = 1;
+			Instantiate(flightUpgradeAnimation, gameObject.transform.position, Quaternion.identity);
 		} else if(upgradedSkill == 1) {
 			scorpionAttribute.gainDefences();
+			Instantiate(blockUpgradeAnimation, gameObject.transform.position, Quaternion.identity);
 		} else if(upgradedSkill == 2) {
 			boomerangSkill.projectileCooldown = 2;
+			Instantiate(boomerangUpgradeAnimation, gameObject.transform.position, Quaternion.identity);
 		}
 	}
 
