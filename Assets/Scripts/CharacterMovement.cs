@@ -23,6 +23,11 @@ public class CharacterMovement : UnitInput {
 	public float blockingRecoveryTime;
 	protected float blockingRecovery;
 
+	//Jump = 0
+	//Block = 1
+	//Boomerang = 2
+	public int lastUsedSkill = 0;
+
 	// Used for animations
 	protected bool isFacingRight = true;
 	public bool IsFacingRight { get { return isFacingRight; } }
@@ -40,7 +45,7 @@ public class CharacterMovement : UnitInput {
 	}
 
 	protected void Update() {
-		if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) {
+		if(Input.GetKeyUp(KeyCode.Space)) {
 			upButtonReleased = true;
 		}
 	}
@@ -52,7 +57,7 @@ public class CharacterMovement : UnitInput {
 	}
 
 	protected bool jumpKeyPressed() {
-		return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+		return Input.GetKey(KeyCode.Space);
 	}
 
 	protected void DoPlayerInput() {
@@ -94,6 +99,7 @@ public class CharacterMovement : UnitInput {
 			isBlocking = true;
 			blockingRecovery = blockingRecoveryTime;
 			gameObject.GetComponent<ScorpionAttribute>().damageMultiplier = this.damageMultiplier;
+			lastUsedSkill = 1;
 		} else {
 			blockingRecovery -= Time.deltaTime;
 			if(blockingRecovery <= 0) {
@@ -145,6 +151,7 @@ public class CharacterMovement : UnitInput {
 				currentVelocity.y = Mathf.Sqrt(jumpHeight * -2f * -9.81f * 5);
 			}
 			totalJumps--;
+			lastUsedSkill = 0;
 		}
 
 		// Didn't move left or right?
@@ -161,6 +168,7 @@ public class CharacterMovement : UnitInput {
 		if (Input.GetMouseButtonDown(0)) {
 			
 			boomerangSkill.FireProjectile();
+			lastUsedSkill = 2;
 		}
 
 		// Pressed C button to fire projectile forward.
@@ -168,6 +176,7 @@ public class CharacterMovement : UnitInput {
 
 			// Fire projectile at target
             boomerangSkill.FireForward();
+            lastUsedSkill = 2;
         }
 
 		spriteRenderer.flipX = !isFacingRight;
@@ -186,6 +195,12 @@ public class CharacterMovement : UnitInput {
 			
 			// move player normally
 			characterMovement.Move(currentVelocity * Time.deltaTime, Vector2.zero);
+		}
+	}
+
+	public void upgradeSkill() {
+		if(lastUsedSkill == 0) {
+			totalJumps = 1;
 		}
 	}
 
