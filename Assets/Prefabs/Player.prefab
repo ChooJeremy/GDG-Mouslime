@@ -175,10 +175,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: -0.5}
-      - {x: -0.5, y: 0.5}
-      - {x: 0.5, y: 0.5}
-      - {x: 0.5, y: -0.5}
+    - - {x: -0.3304925, y: -0.51994216}
+      - {x: -0.30496857, y: -0.33332986}
+      - {x: -0.3105505, y: 0.0911878}
+      - {x: -0.089991495, y: 0.14104287}
+      - {x: -0.20794317, y: -0.058377426}
+      - {x: -0.18574253, y: -0.20849054}
+      - {x: 0.18089718, y: -0.18935141}
+      - {x: 0.2913042, y: -0.25744933}
+      - {x: 0.37037635, y: -0.519942}
 --- !u!95 &95375896857038618
 Animator:
   serializedVersion: 3
@@ -381,10 +386,10 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 554297418
+  randomSeed: -584837841
   InitialModule:
     serializedVersion: 3
     enabled: 1
