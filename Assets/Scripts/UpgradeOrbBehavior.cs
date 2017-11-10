@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class UpgradeOrbBehavior : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public float RotateSpeed;
+ 
+	public GameObject player;
+	public float timeToReturn; 
+	public Vector2 offset;
+	public float radius;
+
+	private float _angle = 0;
+	private float timePassed;
+ 
+	void Start()
+	{
+		timePassed = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+ 
+	void Update()
+	{
+		timePassed += Time.deltaTime;
+
+		_angle += RotateSpeed * Time.deltaTime;
+ 
+		var rotateOffset = new Vector2(Mathf.Sin(_angle), Mathf.Cos(_angle)) * radius * ((timeToReturn - timePassed)/timeToReturn);
+		transform.position = (Vector2)player.transform.position + rotateOffset + offset;
+
+		if(timePassed >= timeToReturn) {
+			Destroy(gameObject);
+		}
 	}
 }
