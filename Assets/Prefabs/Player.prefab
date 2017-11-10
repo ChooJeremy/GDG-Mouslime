@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 114800433319785492}
   - component: {fileID: 114243264415899030}
   - component: {fileID: 114642726179826028}
-  - component: {fileID: 114302940344712658}
   - component: {fileID: 114407856447862450}
   m_Layer: 9
   m_Name: Player
@@ -53,6 +52,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1641598170188952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4419356093547206}
+  - component: {fileID: 33461854544709566}
+  - component: {fileID: 135089309547324136}
+  - component: {fileID: 23919862265797546}
+  - component: {fileID: 114835809615879138}
+  m_Layer: 0
+  m_Name: Upgrade Orb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!4 &4164884442113230
 Transform:
   m_ObjectHideFlags: 1
@@ -66,6 +84,19 @@ Transform:
   m_Father: {fileID: 4461671474087234}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
+--- !u!4 &4419356093547206
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1641598170188952}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_Children: []
+  m_Father: {fileID: 4461671474087234}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4461671474087234
 Transform:
   m_ObjectHideFlags: 1
@@ -77,9 +108,49 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4164884442113230}
+  - {fileID: 4419356093547206}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23919862265797546
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1641598170188952}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33461854544709566
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1641598170188952}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!60 &60404426112938956
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -117,7 +188,7 @@ Animator:
   m_GameObject: {fileID: 1253559539606924}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f0fc9d214fd6264ab5b3ac125735822, type: 2}
+  m_Controller: {fileID: 9100000, guid: ec7934160e4f76e41b69bc6572db30e0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,17 +214,6 @@ MonoBehaviour:
   projectileLifeSpan: 30
   projectileCooldown: 0.5
   maximumTotalAllowedOnScreen: 30
---- !u!114 &114302940344712658
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1253559539606924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9065a6da3218bb46b18ec2284b6b62c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114407856447862450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +270,17 @@ MonoBehaviour:
   detectionBoxSize: {x: 5, y: 2}
   useColliderAsOffset: 0
   detectionBoxOffset: 0.25
+--- !u!114 &114835809615879138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1641598170188952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0835d36d16f3b4e498873aeee2c6de5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114836001685112512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -242,6 +313,18 @@ MonoBehaviour:
   objectCollider: {fileID: 0}
   maxSlopeAngle: 80
   playerInput: {x: 0, y: 0}
+--- !u!135 &135089309547324136
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1641598170188952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198812368059481756
 ParticleSystem:
   m_ObjectHideFlags: 1
