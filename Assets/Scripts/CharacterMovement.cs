@@ -7,6 +7,7 @@ public class CharacterMovement : UnitInput {
 	// Components
 	protected Animator characterAnimator;
 	protected SpriteRenderer spriteRenderer;
+	protected UseProjectileSkill boomerangSkill;
 
 	public int totalJumpsAllowed;
 	public float glideRate;
@@ -30,6 +31,7 @@ public class CharacterMovement : UnitInput {
 		base.Awake ();
 		characterAnimator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		boomerangSkill = GetComponent<UseProjectileSkill>();
 		totalJumps = totalJumpsAllowed;
 		isGliding = false;
 		upButtonReleased = true;
@@ -154,6 +156,19 @@ public class CharacterMovement : UnitInput {
 				characterAnimator.SetBool("isMoving", false);
 			}
 		}
+
+		// Click to fire projectile at mouse
+		if (Input.GetMouseButtonDown(0)) {
+			
+			boomerangSkill.FireProjectile();
+		}
+
+		// Pressed C button to fire projectile forward.
+        else if (Input.GetKey(KeyCode.C)) {
+
+			// Fire projectile at target
+            boomerangSkill.FireForward();
+        }
 
 		spriteRenderer.flipX = !isFacingRight;
 

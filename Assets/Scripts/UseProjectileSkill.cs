@@ -41,50 +41,25 @@ public class UseProjectileSkill : MonoBehaviour {
 
 	// Executes every frame
 	private void Update () {
-
 		// Skill is on cooldown?
 		if (currentProjectileCooldown > 0) {
 
 			// Decrease cooldown time according to frame time
 			currentProjectileCooldown -= Time.deltaTime;
 		}
-
-		// Pressed C button and skill is off cooldown?
-		if (Input.GetMouseButtonDown(0) && currentProjectileCooldown <= 0) {
-			
-			FireProjectile();
-
-			// Set cooldown for the skill
-			currentProjectileCooldown = projectileCooldown;
-		}
-
-		// Pressed C button and skill is off cooldown?
-        else if (Input.GetKey(KeyCode.C) && currentProjectileCooldown <= 0) {
-
-			// Fire projectile at target
-            FireForward();
-
-			// Set cooldown for the skill
-            currentProjectileCooldown = projectileCooldown;
-        }
-
 	}
 
 	private bool fireCheck() {
-		if(characterInformation.isBlocking) {
-			Debug.Log("Blocking, can't fire");
-			return false;
-		}
-
-		if(maximumTotalAllowedOnScreen > 0) {
+		if(maximumTotalAllowedOnScreen > 0 && currentProjectileCooldown <= 0) {
 			maximumTotalAllowedOnScreen--;
+			currentProjectileCooldown = projectileCooldown;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	private void FireProjectile() {
+	public void FireProjectile() {
 
 		if(!fireCheck()) {
 			return;
@@ -107,7 +82,7 @@ public class UseProjectileSkill : MonoBehaviour {
 		//newProjectile.GetComponent<ExampleLinearProjectile>().SetupProjectile(projectileDamage, projectileSpeed, projectileLifeSpan, facingVector, projectileBuff);
 	}
 
-	private void FireForward() {
+	public void FireForward() {
 		if(!fireCheck()) {
 			return;
 		}
