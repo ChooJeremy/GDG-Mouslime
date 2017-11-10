@@ -7,15 +7,22 @@ public class ScorpionAttribute : UnitAttributes {
 	public float damageMultiplier = 1;
 	public float upgradeHealthBuffer;
 	public float timeBetweenBufferRefresh;
+	public GameObject shieldObject;
+	public float shieldFlashTime;
+	protected MeshRenderer shieldRenderer;
 	protected float currentHealthBuffer;
 	protected float currentBufferTimer;
 	protected bool isUpgraded;
+	protected float timeToDisplayShield;
 
 	// Use this for initialization
 	void Start () {
 		currentBufferTimer = 0;
 		currentHealthBuffer = 0;
+		timeToDisplayShield = 0;
 		isUpgraded = false;
+		shieldRenderer = shieldObject.GetComponent<MeshRenderer>();
+		shieldRenderer.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -25,6 +32,15 @@ public class ScorpionAttribute : UnitAttributes {
 			if(currentBufferTimer >= timeBetweenBufferRefresh) {
 				currentBufferTimer -= timeBetweenBufferRefresh;
 				currentHealthBuffer = upgradeHealthBuffer;
+				timeToDisplayShield = shieldFlashTime;
+			}
+		}
+		if(timeToDisplayShield > 0) {
+			timeToDisplayShield -= Time.deltaTime;
+			if(timeToDisplayShield > 0) {
+				shieldRenderer.enabled = true;
+			} else {
+				shieldRenderer.enabled = false;
 			}
 		}
 	}
@@ -39,6 +55,7 @@ public class ScorpionAttribute : UnitAttributes {
 				damageToTake -= currentHealthBuffer;
 				currentHealthBuffer = 0;
 			}
+			timeToDisplayShield = shieldFlashTime;
 		}
 		TakeDamage(damageToTake, pointOfHit, damageColor, false);
 
@@ -52,5 +69,6 @@ public class ScorpionAttribute : UnitAttributes {
     public void gainDefences() {
     	isUpgraded = true;
     	currentHealthBuffer = upgradeHealthBuffer;
+    	timeToDisplayShield = shieldFlashTime;
     }
 }
