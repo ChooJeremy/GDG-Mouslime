@@ -26,7 +26,14 @@ public class CharacterMovement : UnitInput {
 	//Jump = 0
 	//Block = 1
 	//Boomerang = 2
-	public int lastUsedSkill = 0;
+	public int lastUsedSkill;
+	public int upgradedSkill;
+	public float gravityMultiplierWithFlight;
+	public float flightModeMultiplier;
+	protected float normalGravityMultiplier = 1;
+	public float totalFlightTime;
+	protected float currentFlightTime = 0;
+	protected bool isFlying = false;
 
 	// Used for animations
 	protected bool isFacingRight = true;
@@ -72,17 +79,32 @@ public class CharacterMovement : UnitInput {
 		// Character not on ground?
 		if (!characterMovement.collisions.below) {
 
-			// fall
-			// Gravity is multiplied by 5 to make the jump less floaty
-			if(currentVelocity.y <= 0 && jumpKeyPressed() && !upButtonReleased) {
-				if(!isGliding) {
-					isGliding = true;
-					glideEffects.Play();
+			if(upgradedSkill == 0 && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))) {
+				if(currentFlightTime <= totalFlightTime) {
+					currentFlightTime += Time.deltaTime;
+					currentVelocity.y = flightModeMultiplier * 5;
+					if(!isFlying) {
+						isFlying = true;
+						glideEffects.Play();
+					}
 				}
-				currentVelocity.y = Time.deltaTime * glideRate * -1;
 			} else {
-				currentVelocity.y += Time.deltaTime * -9.81f * 5;
-				glideEffects.Stop();
+
+				isFlying = false;
+
+				// fall
+				// Gravity is multiplied by 5 to make the jump less floaty
+				if(currentVelocity.y <= 0 && jumpKeyPressed() && (!upButtonReleased || upgradedSkill == 0)) {
+					if(!isGliding) {
+						isGliding = true;
+						glideEffects.Play();
+					}
+					currentVelocity.y = glideRate * -1;
+				} else {
+					currentVelocity.y += Time.deltaTime * -9.81f * 5 * normalGravityMultiplier;
+					isGliding = false;
+					glideEffects.Stop();
+				}
 			}
 		
 		// otherwise,
@@ -92,6 +114,7 @@ public class CharacterMovement : UnitInput {
 			currentVelocity.y = 0f;
 			totalJumps = totalJumpsAllowed;
 			isGliding = false;
+			currentFlightTime = 0;
 		}
 
 		if  (Input.GetKey(KeyCode.X) && currentVelocity.y == 0) {
@@ -199,8 +222,10 @@ public class CharacterMovement : UnitInput {
 	}
 
 	public void upgradeSkill() {
-		if(lastUsedSkill == 0) {
-			totalJumps = 1;
+		upgradedSkill = lastUsedSkill;
+		if(upgradedSkill == 0) {
+			normalGravityMultiplier = gravityMultiplierWithFlight;
+			totalJumpsAllowed = 1;
 		}
 	}
 

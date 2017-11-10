@@ -4548,6 +4548,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114642726179826028, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: gravityMultiplierWithFlight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642726179826028, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: flightModeMultiplier
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642726179826028, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: totalFlightTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642726179826028, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: glideRate
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
   m_IsPrefabParent: 0

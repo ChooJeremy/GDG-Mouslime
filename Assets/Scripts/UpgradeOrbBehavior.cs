@@ -29,6 +29,7 @@ public class UpgradeOrbBehavior : MonoBehaviour {
 		transform.position = (Vector2)player.transform.position + rotateOffset + offset;
 
 		if(timePassed >= timeToReturn) {
+			player.GetComponent<CharacterMovement>().upgradeSkill();
 			Destroy(gameObject);
 		}
 	}
