@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedTransforms:
-  - {fileID: 860508430}
+  - {fileID: 302628572}
   cameraBuffer: 2
   cameraScaleSpeed: 3
   cameraOffset: {x: 0, y: 2}
@@ -1450,6 +1450,12 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &302628563 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1169018158}
+  m_Script: {fileID: 11500000, guid: 4d4f8ecf11b4f6d4e9c2e01a6059d305, type: 3}
 --- !u!4 &302628572 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f,
@@ -3054,17 +3060,6 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
   m_PrefabInternal: {fileID: 1270542532}
---- !u!114 &860508425 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114158581307608180, guid: 43cda0b047b0c9748bcfa8d42e755673,
-    type: 2}
-  m_PrefabInternal: {fileID: 1958369754}
-  m_Script: {fileID: 11500000, guid: b147ed32684d1014ca01b7a67575748e, type: 3}
---- !u!4 &860508430 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4969838527958762, guid: 43cda0b047b0c9748bcfa8d42e755673,
-    type: 2}
-  m_PrefabInternal: {fileID: 1958369754}
 --- !u!1 &870887071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4567,7 +4562,7 @@ Prefab:
         type: 2}
       propertyPath: mainEnemy
       value: 
-      objectReference: {fileID: 1066687526}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114836001685112512, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
     - {fileID: 114800433319785492, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
@@ -7452,7 +7447,7 @@ Prefab:
         type: 2}
       propertyPath: unitAttributes
       value: 
-      objectReference: {fileID: 860508425}
+      objectReference: {fileID: 302628563}
     - target: {fileID: 224994736576997140, guid: d52ef8c2841b6d54d88296e07610fb4a,
         type: 2}
       propertyPath: m_LocalScale.x

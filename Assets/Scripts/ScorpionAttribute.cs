@@ -31,7 +31,17 @@ public class ScorpionAttribute : UnitAttributes {
 		shieldRenderer = shieldObject.GetComponent<MeshRenderer>();
 		shieldRenderer.enabled = false;
 		if(mainEnemy == null) {
-			
+			//assign one.
+			GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+			for(int i = 0; i < enemies.Length; i++) {
+				if(enemies[i].GetComponent<UnitAttributes>() != null) {
+					mainEnemy = enemies[i];
+				}
+			}
+			if(mainEnemy == null) { //still not found
+				//just pick one.
+				mainEnemy = enemies[0];
+			}
 		}
 		enemyAttributes = mainEnemy.GetComponent<UnitAttributes>();
 		enemyMaxHealth = enemyAttributes.CurrentHealth;
