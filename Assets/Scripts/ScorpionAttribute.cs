@@ -33,14 +33,17 @@ public class ScorpionAttribute : UnitAttributes {
 		if(mainEnemy == null) {
 			//assign one.
 			GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-			for(int i = 0; i < enemies.Length; i++) {
+			//In general I've found that the bosses tend to be at the end of the array, so we're going to start from the end
+			//and then pick the first one that matches the criteria.
+			for(int i = enemies.Length - 1; i >= 0; i++) {
 				if(enemies[i].GetComponent<UnitAttributes>() != null) {
 					mainEnemy = enemies[i];
+					break;
 				}
 			}
 			if(mainEnemy == null) { //still not found
 				//just pick one.
-				mainEnemy = enemies[0];
+				mainEnemy = enemies[enemies.Length - 1];
 			}
 		}
 		enemyAttributes = mainEnemy.GetComponent<UnitAttributes>();

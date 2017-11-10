@@ -40,8 +40,6 @@ GameObject:
   - component: {fileID: 60404426112938956}
   - component: {fileID: 114859595029702860}
   - component: {fileID: 95375896857038618}
-  - component: {fileID: 114836001685112512}
-  - component: {fileID: 114800433319785492}
   - component: {fileID: 114243264415899030}
   - component: {fileID: 114642726179826028}
   - component: {fileID: 114407856447862450}
@@ -286,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotateSpeed: 5
+  isActive: 0
   player: {fileID: 1253559539606924}
   timeToReturn: 5
   offset: {x: 0, y: -0.3}
@@ -312,6 +311,8 @@ MonoBehaviour:
   timeBetweenBufferRefresh: 30
   shieldObject: {fileID: 1334525683667792}
   shieldFlashTime: 0.5
+  improvementOrb: {fileID: 1993831712078156}
+  mainEnemy: {fileID: 0}
 --- !u!114 &114642726179826028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,38 +336,6 @@ MonoBehaviour:
   flightModeMultiplier: 0.25
   totalFlightTime: 10
   upgradeBlockingMovementMultiplier: 0.1
---- !u!114 &114800433319785492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1253559539606924}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5832f58f3eff07f4f89fa32e58d50a47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 1598217348299116, guid: 78f06ede1dd44034ea343ea855a64dac, type: 2}
-  firingIndicator: {fileID: 0}
-  firingPivot: {fileID: 4461671474087234}
-  projectileDamage: 10
-  projectileSpeed: 1
-  projectileLifeSpan: 5
-  projectileCooldown: 0.125
-  detectionBoxSize: {x: 5, y: 2}
-  useColliderAsOffset: 0
-  detectionBoxOffset: 0.25
---- !u!114 &114836001685112512
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1253559539606924}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e3f63fbd7f22d45ab13ff0177acd22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114859595029702860
 MonoBehaviour:
   m_ObjectHideFlags: 1
