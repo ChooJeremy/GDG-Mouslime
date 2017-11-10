@@ -8,6 +8,7 @@ public class CharacterMovement : UnitInput {
 	protected Animator characterAnimator;
 	protected SpriteRenderer spriteRenderer;
 	protected UseProjectileSkill boomerangSkill;
+	protected ScorpionAttribute scorpionAttribute;
 
 	public int totalJumpsAllowed;
 	public float glideRate;
@@ -35,6 +36,8 @@ public class CharacterMovement : UnitInput {
 	protected float currentFlightTime = 0;
 	protected bool isFlying = false;
 
+	public float upgradeBlockingMovementMultiplier = 0.1f;
+
 	// Used for animations
 	protected bool isFacingRight = true;
 	public bool IsFacingRight { get { return isFacingRight; } }
@@ -44,6 +47,7 @@ public class CharacterMovement : UnitInput {
 		characterAnimator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		boomerangSkill = GetComponent<UseProjectileSkill>();
+		scorpionAttribute = GetComponent<ScorpionAttribute>();
 		totalJumps = totalJumpsAllowed;
 		isGliding = false;
 		upButtonReleased = true;
@@ -140,6 +144,11 @@ public class CharacterMovement : UnitInput {
 				hasMovedHorizontally = true;
 				isFacingRight = false;
 				characterAnimator.SetBool("isMoving", true);
+			} else if(upgradedSkill == 1) {
+				currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, -movementSpeed * upgradeBlockingMovementMultiplier, currentAcceleration * Time.deltaTime);
+				hasMovedHorizontally = true;
+				isFacingRight = false;
+				characterAnimator.SetBool("isMoving", true);
 			}
 		}
 
@@ -149,6 +158,11 @@ public class CharacterMovement : UnitInput {
 			if(!isBlocking) {
 				// Accelerate rightwards towards max speed
 				currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, movementSpeed, currentAcceleration * Time.deltaTime);
+				hasMovedHorizontally = true;
+				isFacingRight = true;
+				characterAnimator.SetBool("isMoving", true);
+			} else if(upgradedSkill == 1) {
+				currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, movementSpeed * upgradeBlockingMovementMultiplier, currentAcceleration * Time.deltaTime);
 				hasMovedHorizontally = true;
 				isFacingRight = true;
 				characterAnimator.SetBool("isMoving", true);
@@ -187,20 +201,23 @@ public class CharacterMovement : UnitInput {
 			}
 		}
 
-		// Click to fire projectile at mouse
-		if (Input.GetMouseButtonDown(0)) {
-			
-			boomerangSkill.FireProjectile(false, upgradedSkill == 2);
-			lastUsedSkill = 2;
+		if(!isBlocking) {
+
+			// Click to fire projectile at mouse
+			if (Input.GetMouseButtonDown(0)) {
+				
+				boomerangSkill.FireProjectile(false, upgradedSkill == 2);
+				lastUsedSkill = 2;
+			}
+
+			// Pressed C button to fire projectile forward.
+			else if (Input.GetKey(KeyCode.C)) {
+
+				// Fire projectile at target
+				boomerangSkill.FireProjectile(true, upgradedSkill == 2);
+				lastUsedSkill = 2;
+			}
 		}
-
-		// Pressed C button to fire projectile forward.
-        else if (Input.GetKey(KeyCode.C)) {
-
-			// Fire projectile at target
-            boomerangSkill.FireProjectile(true, upgradedSkill == 2);
-            lastUsedSkill = 2;
-        }
 
 		spriteRenderer.flipX = !isFacingRight;
 
@@ -226,6 +243,8 @@ public class CharacterMovement : UnitInput {
 		if(upgradedSkill == 0) {
 			normalGravityMultiplier = gravityMultiplierWithFlight;
 			totalJumpsAllowed = 1;
+		} else if(upgradedSkill == 1) {
+			scorpionAttribute.gainDefences();
 		} else if(upgradedSkill == 2) {
 			boomerangSkill.projectileCooldown = 2;
 		}

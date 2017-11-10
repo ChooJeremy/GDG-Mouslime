@@ -4622,6 +4622,16 @@ Prefab:
       propertyPath: projectileCooldown
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: upgradeHealthBuffer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: timeBetweenBufferRefresh
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
   m_IsPrefabParent: 0
