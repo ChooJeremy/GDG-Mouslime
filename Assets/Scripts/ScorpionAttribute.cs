@@ -30,15 +30,13 @@ public class ScorpionAttribute : UnitAttributes {
 	protected bool isUpgraded;
 	protected float timeToDisplayShield;
 
-	void Awake() {
+	// Use this for initialization
+	void Start () {
 		if(spriteRenderer == null) {
 			spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		}
 		normalSprite = spriteRenderer.sprite;
-	}
-
-	// Use this for initialization
-	void Start () {
+		
 		currentBufferTimer = 0;
 		currentHealthBuffer = 0;
 		timeToDisplayShield = 0;
@@ -96,6 +94,7 @@ public class ScorpionAttribute : UnitAttributes {
 		} else if(damageMultiplier == 1) {
 			spriteRenderer.sprite = normalSprite;
 		}
+		Debug.Log(spriteRenderer.sprite);
 	}
 
 	public override void ApplyAttack(float damageDealt, Vector2 pointOfHit, Color damageColor, params Buff[] attackBuffs) {
