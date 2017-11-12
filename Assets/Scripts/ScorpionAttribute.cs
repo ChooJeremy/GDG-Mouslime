@@ -102,8 +102,8 @@ public class ScorpionAttribute : UnitAttributes {
 		float damageToTake = damageDealt * damageMultiplier;
 		if(currentHealthBuffer > 0) {
 			if(currentHealthBuffer > damageToTake) {
-				damageToTake = 0;
 				currentHealthBuffer -= damageToTake;
+				damageToTake = 0;
 			} else {
 				damageToTake -= currentHealthBuffer;
 				currentHealthBuffer = 0;
