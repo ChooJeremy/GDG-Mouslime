@@ -179,6 +179,64 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &177142234
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: mainEnemy
+      value: 
+      objectReference: {fileID: 866578799}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &177142235 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 177142234}
+--- !u!114 &177142236 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 177142234}
+  m_Script: {fileID: 11500000, guid: 4d4f8ecf11b4f6d4e9c2e01a6059d305, type: 3}
 --- !u!1 &540210270
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +595,7 @@ Prefab:
         type: 2}
       propertyPath: unitAttributes
       value: 
-      objectReference: {fileID: 856829109}
+      objectReference: {fileID: 177142236}
     - target: {fileID: 224994736576997140, guid: d52ef8c2841b6d54d88296e07610fb4a,
         type: 2}
       propertyPath: m_LocalScale.x
@@ -843,7 +901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &856829105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,7 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12cdc8a51079ef4fb3fe179e20394b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCharacter: {fileID: 856829114}
+  targetCharacter: {fileID: 177142235}
   bomb: {fileID: 1363224133084284, guid: db473b65ac25a52479b5723844f17b76, type: 2}
   fireBomb: {fileID: 1307275677737734, guid: c883c48ff0b38fc428eaebdc3f70dc25, type: 2}
   laser: {fileID: 0}
@@ -11821,7 +11879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedTransforms:
-  - {fileID: 856829114}
+  - {fileID: 177142235}
   cameraBuffer: 2
   cameraScaleSpeed: 3
   cameraOffset: {x: 0, y: 2}
