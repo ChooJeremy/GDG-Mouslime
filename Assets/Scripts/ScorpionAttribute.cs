@@ -9,6 +9,12 @@ public class ScorpionAttribute : UnitAttributes {
 	public float timeBetweenBufferRefresh;
 	public GameObject shieldObject;
 	public float shieldFlashTime;
+	protected SpriteRenderer spriteRenderer;
+	public Sprite damageSprite;
+	public Sprite normalSprite;
+	public Sprite blockingSprite;
+
+	public float damageSpriteDisplayDuration;
 
 	//improvement!
 	public GameObject improvementOrb;
@@ -16,11 +22,20 @@ public class ScorpionAttribute : UnitAttributes {
 	protected UnitAttributes enemyAttributes;
 	protected float enemyMaxHealth;
 
+	protected float damageSpriteCounter;
+
 	protected MeshRenderer shieldRenderer;
 	protected float currentHealthBuffer;
 	protected float currentBufferTimer;
 	protected bool isUpgraded;
 	protected float timeToDisplayShield;
+
+	void Awake() {
+		if(spriteRenderer == null) {
+			spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+		}
+		normalSprite = spriteRenderer.sprite;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -72,6 +87,15 @@ public class ScorpionAttribute : UnitAttributes {
 				shieldRenderer.enabled = false;
 			}
 		}
+
+		if(damageSpriteCounter > 0) {
+			damageSpriteCounter -= Time.deltaTime;
+			spriteRenderer.sprite = damageSprite;
+		} else if(damageMultiplier < 1) {
+			spriteRenderer.sprite = blockingSprite;
+		} else if(damageMultiplier == 1) {
+			spriteRenderer.sprite = normalSprite;
+		}
 	}
 
 	public override void ApplyAttack(float damageDealt, Vector2 pointOfHit, Color damageColor, params Buff[] attackBuffs) {
@@ -87,6 +111,7 @@ public class ScorpionAttribute : UnitAttributes {
 			timeToDisplayShield = shieldFlashTime;
 		}
 		TakeDamage(damageToTake, pointOfHit, damageColor, false);
+		damageSpriteCounter = damageSpriteDisplayDuration;
 
         if (attackBuffs != null) {
             for (int i = 0; i < attackBuffs.Length; i++) {

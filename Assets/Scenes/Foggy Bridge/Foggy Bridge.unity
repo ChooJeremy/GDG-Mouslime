@@ -4548,6 +4548,28 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: damageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 76f3d50b1dacd974cbbe927205311e3e,
+        type: 3}
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: blockingSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 75b560bd83bb9b043b2880617dae9bb2,
+        type: 3}
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: damageSpriteDisplayDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
+        type: 2}
+      propertyPath: mainEnemy
+      value: 
+      objectReference: {fileID: 1066687526}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
   m_IsPrefabParent: 0
