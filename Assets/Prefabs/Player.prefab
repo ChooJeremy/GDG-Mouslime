@@ -343,6 +343,10 @@ MonoBehaviour:
   timeBetweenBufferRefresh: 30
   shieldObject: {fileID: 1334525683667792}
   shieldFlashTime: 0.5
+  damageSprite: {fileID: 21300000, guid: 76f3d50b1dacd974cbbe927205311e3e, type: 3}
+  normalSprite: {fileID: 0}
+  blockingSprite: {fileID: 21300000, guid: 75b560bd83bb9b043b2880617dae9bb2, type: 3}
+  damageSpriteDisplayDuration: 0.5
   improvementOrb: {fileID: 1993831712078156}
   mainEnemy: {fileID: 0}
 --- !u!114 &114642726179826028
@@ -466,7 +470,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 350930860
+  randomSeed: -1326518099
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -1452,13 +1452,13 @@ SpriteRenderer:
   m_MaskInteraction: 0
 --- !u!114 &302628563 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114691839730990954, guid: a1b55860c1474104da2c6b983a89a0a7,
+  m_PrefabParentObject: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
     type: 2}
   m_PrefabInternal: {fileID: 1169018158}
   m_Script: {fileID: 11500000, guid: 4d4f8ecf11b4f6d4e9c2e01a6059d305, type: 3}
 --- !u!4 &302628572 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7,
+  m_PrefabParentObject: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f,
     type: 2}
   m_PrefabInternal: {fileID: 1169018158}
 --- !u!1 &322379352
@@ -4516,60 +4516,45 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_LocalPosition.y
       value: -2
       objectReference: {fileID: 0}
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4178206390504622, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+    - target: {fileID: 4461671474087234, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114691839730990954, guid: a1b55860c1474104da2c6b983a89a0a7,
+    - target: {fileID: 114407856447862450, guid: 07fac2057c4f48f439210f5347e19b8f,
         type: 2}
       propertyPath: mainEnemy
       value: 
       objectReference: {fileID: 1066687526}
-    - target: {fileID: 95419224416730656, guid: a1b55860c1474104da2c6b983a89a0a7,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 95419224416730656, guid: a1b55860c1474104da2c6b983a89a0a7,
-        type: 2}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95419224416730656, guid: a1b55860c1474104da2c6b983a89a0a7,
-        type: 2}
-      propertyPath: m_CullingMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 07fac2057c4f48f439210f5347e19b8f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1169150674 stripped
 Transform:
