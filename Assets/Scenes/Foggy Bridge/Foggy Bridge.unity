@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.2150859
+  m_Length: 1.2150875
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 417157613}
   m_AttachedIK: {fileID: 713130366}
@@ -4553,6 +4553,21 @@ Prefab:
       propertyPath: mainEnemy
       value: 
       objectReference: {fileID: 1066687526}
+    - target: {fileID: 95419224416730656, guid: a1b55860c1474104da2c6b983a89a0a7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95419224416730656, guid: a1b55860c1474104da2c6b983a89a0a7,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95419224416730656, guid: a1b55860c1474104da2c6b983a89a0a7,
+        type: 2}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1b55860c1474104da2c6b983a89a0a7, type: 2}
   m_IsPrefabParent: 0
@@ -6646,7 +6661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.125621
+  m_Length: 1.125622
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 87378878}
   m_AttachedIK: {fileID: 713130366}

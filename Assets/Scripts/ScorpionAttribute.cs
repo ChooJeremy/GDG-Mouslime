@@ -21,6 +21,7 @@ public class ScorpionAttribute : UnitAttributes {
 	public GameObject mainEnemy;
 	protected UnitAttributes enemyAttributes;
 	protected float enemyMaxHealth;
+	protected Animator animator;
 
 	protected float damageSpriteCounter;
 
@@ -61,6 +62,7 @@ public class ScorpionAttribute : UnitAttributes {
 		}
 		enemyAttributes = mainEnemy.GetComponent<UnitAttributes>();
 		enemyMaxHealth = enemyAttributes.CurrentHealth;
+		animator = gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -89,12 +91,14 @@ public class ScorpionAttribute : UnitAttributes {
 		if(damageSpriteCounter > 0) {
 			damageSpriteCounter -= Time.deltaTime;
 			spriteRenderer.sprite = damageSprite;
+			animator.enabled = false;
 		} else if(damageMultiplier < 1) {
 			spriteRenderer.sprite = blockingSprite;
+			animator.enabled = false;
 		} else if(damageMultiplier == 1) {
 			spriteRenderer.sprite = normalSprite;
+			animator.enabled = true;
 		}
-		Debug.Log(spriteRenderer.sprite);
 	}
 
 	public override void ApplyAttack(float damageDealt, Vector2 pointOfHit, Color damageColor, params Buff[] attackBuffs) {
